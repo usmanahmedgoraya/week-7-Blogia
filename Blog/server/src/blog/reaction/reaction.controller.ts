@@ -6,7 +6,7 @@ import { RolesGuard } from '../../auth/roles.guard';
 import { Role } from '../../auth/schema/user.schemas';
 import { BlogService } from '../blog.service';
 import { blogReactionDto } from '../dto/reactionBlogDto.dto';
-import { Reaction } from '../schema/Reaction.schema';
+import { Reaction } from '../schema/reaction.schema';
 import { ReactionService } from './reaction.service';
 
 @Controller('reactions')
