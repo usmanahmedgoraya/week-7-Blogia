@@ -1,8 +1,8 @@
 'use client'
 import { create } from 'zustand'
 
-// const domain: string = "http://localhost:3002"
-const domain: string = "https://week-7-8.vercel.app"
+const domain: string = "http://localhost:3002"
+// const domain: string = "https://week-7-8.vercel.app"
 
 interface UserState {
     users: [],
