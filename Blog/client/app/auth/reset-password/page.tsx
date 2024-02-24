@@ -1,3 +1,4 @@
+'use client'
 import useAuthStore from '@/zustand/useAuthStore';
 import { useRouter } from 'next/navigation'; // Changed import statement
 import React, { ChangeEvent, FC, useState } from 'react'; // Added missing semicolon
