@@ -1,18 +1,18 @@
 'use client'
-import useBlogStore from '@/zustand/useBlogStore'
-import React, { useEffect } from 'react'
+import useBlogStore from '@/zustand/useBlogStore';
+import React, { useEffect } from 'react';
 
-const profileBlogs = () => {
-    const{userBlogs,userBlog} = useBlogStore()
-    useEffect(() => {
-      userBlogs()
-      console.log(userBlog);
-      
-    }, [])
+const ProfileBlogs = () => { // Renamed 'profileBlogs' to 'ProfileBlogs'
+    const { userBlogs, userBlog } = useBlogStore();
     
-  return (
-    <div>profileBlogs</div>
-  )
+    useEffect(() => {
+        userBlogs();
+        console.log(userBlog);
+    }, []);
+    
+    return (
+        <div>profileBlogs</div>
+    );
 }
 
-export default profileBlogs
+export default ProfileBlogs;

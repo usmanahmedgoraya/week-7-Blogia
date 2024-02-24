@@ -20,14 +20,14 @@ const Page: FC = () => {
 
   useEffect(() => {
     let isLoggedin: any = localStorage.getItem('Auth');
-    isLoggedin = JSON.parse(isLoggedin);
-    isLoggedin = isLoggedin?.state?.isLoggedin;
+    isLoggedin = JSON.parse(isLoggedin)?.state?.isLoggedin;
     if (isLoggedin) {
       router.push('/')
     } else {
       router.push('/auth/login')
     }
-  }, [])
+  }, [router])
+  
 
   const { login } = useAuthStore();
 
@@ -138,7 +138,7 @@ const Page: FC = () => {
         </div>
 
         <p className="mt-8 text-xs font-light text-center text-gray-700">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href="/auth/signup"
             className="font-medium text-purple-600 hover:underline"
