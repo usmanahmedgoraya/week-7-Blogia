@@ -4,8 +4,8 @@ import { devtools, persist } from 'zustand/middleware';
 
 // Set domain of URL to avoid from complexity
 // const domain = "http://localhost:3002"
-// const domain = "https://week-7-8.vercel.app"
-const domain = "https://localhost:3002"
+const domain = "https://week-7-blogia.vercel.app"
+// const domain = "https://localhost:3002"
 
 // Define the AuthState interface to represent the shape of your store's state
 interface AuthState {
