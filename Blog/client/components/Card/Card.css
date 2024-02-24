@@ -1,0 +1,43 @@
+/* glowing hover card made by: csozi | Website: english.csozi.hu*/
+
+.card {
+  position: relative;
+  width: 100%;
+  /* Set the initial width to 100% */
+  max-width: 356px;
+  /* Set the maximum width for larger screens */
+  height: 430px;
+  background: rgb(255, 0, 179);
+  background: linear-gradient(137deg, rgb(255, 0, 179) 0%, rgba(0, 212, 255, 1) 60%);
+  transition: 0.3s ease;
+  border-radius: 30px;
+  filter: drop-shadow(0px 0px 10px rgba(209, 38, 197, 0.5));
+}
+
+/* Add a media query for smaller screens */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    /* Set the maximum width to 100% for smaller screens */
+  }
+}
+
+/* ... rest of your CSS ... */
+
+
+.card::after {
+  content: '';
+  background-color: #181818;
+  position: absolute;
+  z-index: 1;
+  transition: 0.3s ease;
+  height: 98%;
+  width: 98%;
+  top: 1%;
+  left: 1%;
+  border-radius: 28px;
+}
+
+.card:hover {
+  filter: drop-shadow(0px 0px 10px rgba(209, 38, 197, 1));
+}
