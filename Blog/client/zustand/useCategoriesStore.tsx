@@ -1,7 +1,8 @@
 import { create } from "zustand";
 
 // Set domain of URL to avoid from complexity
-const domain = "http://localhost:3002"
+// const domain = "http://localhost:3002"
+const domain = "https://week-7-blogia.vercel.app"
 
 
 
@@ -64,13 +65,13 @@ const CategoriesStore = (set: any): CategoriesState => ({
                 headers: {
                     'content-type': 'application/json'
                 },
-                body:JSON.stringify(category)
+                body: JSON.stringify(category)
             })
 
             const data = await res.json()
             console.log(data);
             state.getAllCategories()
-            
+
         } catch (error) {
             console.log(error);
         }
