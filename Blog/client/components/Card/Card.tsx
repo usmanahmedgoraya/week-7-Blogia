@@ -1,24 +1,23 @@
 'use client'
-import React from 'react'
-import './Card.css'
-import { TERipple } from 'tw-elements-react'
-import Image from 'next/image'
-import { useRouter, usePathname } from 'next/navigation'
-import { Divider } from 'antd'
+import { useEffect, useState } from 'react';
+import HTMLReactParser from 'html-react-parser/lib/index';
+import { usePathname, useRouter } from 'next/navigation';
+import { TERipple } from 'tw-elements-react';
+import './Card.css';
 
 export interface BlogProps {
     key: string;
     blog: {
         _id: string;
         user: {
-            _id: string,
-            profileImage: string,
-            name: string
+            _id: string;
+            profileImage: string;
+            name: string;
         };
         reaction: [];
         comments: [];
         categories: {
-            name: string
+            name: string;
         };
         title: string;
         description: string;
@@ -31,12 +30,18 @@ export interface BlogProps {
 }
 
 const Card = ({ blog, key }: BlogProps) => {
-    const router = useRouter()
-    const path = usePathname()
-    function getFirst84Characters(paragraph: string) {
+    const router = useRouter();
+    const path = usePathname();
+    const [decsLetters, setDecsLetters] = useState('');
+
+    useEffect(() => {
+        getFirst84Characters();
+    }, []);
+
+    function getFirst84Characters() {
         // Use substring to get the first 84 characters
-        let first84Characters = paragraph.substring(0, 84);
-        return first84Characters;
+        let first84Characters = blog?.description?.substring(0, 84);
+        setDecsLetters(first84Characters);
     }
 
     const formatDate = (): string => {
@@ -51,42 +56,41 @@ const Card = ({ blog, key }: BlogProps) => {
         };
 
         const formattedDate = date.toLocaleDateString('en-US', options);
-        return formattedDate
-    }
+        return formattedDate;
+    };
 
     function splitFirstEightCharacters() {
         return path.slice(0, 10);
     }
+
+    // Function to strip HTML tags from the description
+    const stripHtmlTags = (htmlString: string): string => {
+        const regex = /(<([^>]+)>)/ig;
+        return htmlString.replace(regex, '');
+    };
+
     return (
         <div className='cursor-pointer container' onClick={() => router.push(`/blog/${blog._id}`)}>
-
             <div className="card relative">
                 <TERipple>
-                    <div
-                        className="relative overflow-hidden bg-cover bg-no-repeat z-40 p-1.5 rounded-t-3xl h-56">
-                        <img
-                            className="rounded-t-3xl object-cover"
-                            src={blog.image}
-                            alt={blog.title} />
-
-                        <div
-                            className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></div>
+                    <div className="relative overflow-hidden bg-cover bg-no-repeat z-40 p-1.5 rounded-t-3xl h-56">
+                        <img className="rounded-t-3xl object-cover" src={blog.image} alt={blog.title} />
+                        <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></div>
                     </div>
                 </TERipple>
                 <div className="md:p-2 mx-3 p-1 h-full text-white z-40 flex flex-col justify-between ">
                     <div className='flex justify-between items-center my-2'>
-                        <p className='text-purple-400 capitalize font-medium text-xs  '>
+                        <p className='text-purple-400 capitalize font-medium text-xs'>
                             {blog?.categories?.name}
                         </p>
-                        {splitFirstEightCharacters() === '/blog/user' &&
-                            <div className="badge badge-secondary badge-outline p-3 text-xs">{blog?.status}</div>}
+                        {splitFirstEightCharacters() === '/blog/user' && <div className="badge badge-secondary badge-outline p-3 text-xs">{blog?.status}</div>}
                     </div>
-                    <h5
-                        className="mb-2 text-lg font-medium leading-tight text-white dark:text-neutral-50">
+                    <h5 className="mb-2 text-lg font-medium leading-tight text-white dark:text-neutral-50">
                         {blog?.title}
                     </h5>
                     <p className="mb-4 text-sm  text-white dark:text-neutral-200">
-                        {blog?.description.length > 84 ? `${getFirst84Characters(blog.description)}...` : blog?.description}
+                        {/* Render only text content without HTML tags */}
+                        {blog?.description.length > 84 ? `${stripHtmlTags(decsLetters)}...` : stripHtmlTags(blog?.description)}
                     </p>
                     <div className='flex items-center gap-x-2 mb-3'>
                         <div>
@@ -101,11 +105,10 @@ const Card = ({ blog, key }: BlogProps) => {
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Card
+export default Card;

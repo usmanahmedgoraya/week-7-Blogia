@@ -2,6 +2,7 @@
 import Comments from '@/components/Comment/Comments';
 import useBlogStore from '@/zustand/useBlogStore';
 import { ReactionBarSelector } from '@charkour/react-reactions';
+import HTMLReactParser from 'html-react-parser/lib/index';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // Correct import statement for useRouter
 import { useEffect, useState } from 'react';
@@ -115,7 +116,7 @@ const Page = ({ params }: { params: { id: string } }) => { // Renamed 'page' to 
           />
         </div>
         <div className='mt-7 w-full'>
-          {singleBlog?.description}
+          {HTMLReactParser(singleBlog?.description) }
         </div>
         <div className='mt-6 flex flex-col md:flex-row justify-center md:justify-between items-center w-full gap-2'>
           {user?.role === 'user' && (

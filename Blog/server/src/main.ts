@@ -8,7 +8,7 @@ async function bootstrap() {
   // Define CORS options
   // Define CORS options
   const corsOptions: CorsOptions = {
-    origin: ['https://week-7-8-blogia-client.vercel.app','https://week-7-blogia-admin.vercel.app'], // or specify your frontend URL(s) here
+    origin: ['https://week-7-8-blogia-client.vercel.app','https://week-7-blogia-admin.vercel.app','http://localhost:3000'], // or specify your frontend URL(s) here
     methods:  ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
   };
 
