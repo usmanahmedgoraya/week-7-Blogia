@@ -1,14 +1,15 @@
 'use client'
 import React, { ChangeEvent, useEffect, useRef, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import JoditEditor from 'jodit-react';
-import IConfig from 'jodit-react';
+// Import JoditEditor dynamically
+const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 import { FallingLines } from 'react-loader-spinner';
 import { RxCrossCircled } from 'react-icons/rx';
 import useCategoriesStore from '@/zustand/useCategoriesStore';
 import useBlogStore from '@/zustand/useBlogStore';
 import './CreateBlog.css';
 import UploadImage from '../SmallComponent/UploadImage';
+import dynamic from 'next/dynamic';
 
 interface BlogData {
   title: string;
