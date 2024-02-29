@@ -105,7 +105,6 @@ const CreateBlog = () => {
             value={blogData.description}
             onChange={(value) => setBlogData((prevData) => ({ ...prevData, description: value }))}
             config={config}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             name="description"
             id="description"
